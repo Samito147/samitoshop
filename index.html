@@ -1,0 +1,972 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <!-- =========================================================
+    DOCUMENTO: index.html
+    OBJETIVO:
+    - Estrutura HTML extraída e reorganizada a partir do JSON enviado
+    - Mantida a essência da página original
+    - Removidos excessos do builder e blocos institucionais desnecessários
+    - Preparado para CSS e JS separados
+  ========================================================== -->
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <title>Belli K-Pelle | Cabelo, Pele e Unhas</title>
+  <meta
+    name="description"
+    content="Micronutrição avançada para fortalecer cabelo, pele e unhas com uma cápsula ao dia."
+  />
+
+  <!-- =========================================================
+    SEO BÁSICO
+    - Meta tags para indexação, compartilhamento social e preview
+    - Mantido de forma simples para não poluir a estrutura
+  ========================================================== -->
+  <meta name="robots" content="index, follow" />
+  <meta name="author" content="Belli K-Pelle" />
+  <meta name="theme-color" content="#a6192e" />
+
+  <meta property="og:locale" content="pt_BR" />
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="Belli K-Pelle | Cabelo, Pele e Unhas" />
+  <meta
+    property="og:description"
+    content="Micronutrição avançada para fortalecer cabelo, pele e unhas com uma cápsula ao dia."
+  />
+  <meta
+    property="og:image"
+    content="https://bellikpelle.com.br/wp-content/uploads/2024/07/Design-sem-nome-64.png"
+  />
+  <meta property="og:image:alt" content="Frasco do suplemento Belli K-Pelle" />
+
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Belli K-Pelle | Cabelo, Pele e Unhas" />
+  <meta
+    name="twitter:description"
+    content="Micronutrição avançada para fortalecer cabelo, pele e unhas com uma cápsula ao dia."
+  />
+  <meta
+    name="twitter:image"
+    content="https://bellikpelle.com.br/wp-content/uploads/2024/07/Design-sem-nome-64.png"
+  />
+
+  <!-- Fonts originais mais próximas da composição visual do JSON -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&family=Poppins:wght@400;500;600;700&family=Roboto:wght@400;500;700&display=swap"
+    rel="stylesheet"
+  />
+
+  <!-- CSS principal separado -->
+  <link rel="stylesheet" href="./css/style.css" />
+</head>
+<body>
+  <!-- =========================================================
+    CABEÇALHO / NAVEGAÇÃO SUPERIOR
+    - Contém atalhos por âncora
+    - Estrutura limpa e sem excesso de wrappers
+  ========================================================== -->
+  <header class="topbar">
+    <div class="container topbar-container">
+      <nav class="topbar-nav" aria-label="Navegação principal">
+        <a href="#comprar" class="topbar-link">Fazer pedido</a>
+        <a href="#faq" class="topbar-link">Tire suas dúvidas</a>
+
+        <a href="#inicio" class="topbar-logo" aria-label="Ir para o início">
+          <img
+            src="https://bellikpelle.com.br/wp-content/uploads/2023/07/logo3-03.png"
+            alt="Belli K-Pelle"
+          />
+        </a>
+
+        <a href="#formas-pagamento" class="topbar-link">Formas de pagamento</a>
+        <a href="#whatsapp" class="topbar-link">Mais informações</a>
+      </nav>
+    </div>
+  </header>
+
+  <!-- =========================================================
+    CONTEÚDO PRINCIPAL
+  ========================================================== -->
+  <main id="inicio">
+    <!-- =====================================================
+      HERO PRINCIPAL
+      - Título principal
+      - Subtítulo de transformação
+      - Lista de benefícios diretos
+      - CTA principal
+    ====================================================== -->
+    <section class="hero">
+      <div class="container hero-container">
+        <div class="hero-content">
+          <p class="hero-kicker">Realize a sua beleza com</p>
+          <h1 class="hero-title">
+            <span class="line-break">Beleza com</span>
+            <span class="brand-highlight">BELLI K-PELLE</span>
+          </h1>
+
+          <div class="hero-grid">
+            <div class="hero-card hero-card-text">
+              <h2 class="hero-card-title">
+                Surpreenda-se com a transformação que uma cápsula ao dia pode fazer
+                nas estruturas do seu
+                <span class="brand-highlight-soft"><strong>cabelo, pele e unhas</strong></span>
+              </h2>
+            </div>
+
+            <div class="hero-product">
+              <img
+                src="https://bellikpelle.com.br/wp-content/uploads/2024/07/Design-sem-nome-64.png"
+                alt="Frasco do suplemento Belli K-Pelle"
+              />
+            </div>
+
+            <div class="hero-card hero-card-list">
+              <ul class="benefit-list">
+                <li>Efeito antiqueda capilar</li>
+                <li>Fortalece fios de cabelo</li>
+                <li>Pele com mais vitalidade</li>
+                <li>Unhas mais fortes</li>
+                <li>Ação antioxidante</li>
+                <li>Maior produção de colágeno</li>
+              </ul>
+            </div>
+          </div>
+
+          <div class="cta-stack">
+            <a href="#comprar" class="btn btn-primary">Quero realizar a minha beleza!</a>
+            <img
+              class="secure-badge"
+              src="https://bellikpelle.com.br/wp-content/uploads/2024/07/COMPRA-SEGURA.png"
+              alt="Compra segura"
+            />
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- =====================================================
+      INTRODUÇÃO DO PRODUTO
+      - Bloco institucional da oferta, mas focado no benefício do produto
+    ====================================================== -->
+    <section class="section section-intro">
+      <div class="container">
+        <header class="section-header">
+          <h2 class="section-title section-title-accent">
+            Micronutrição avançada para cabelo, pele e unhas radiantes
+          </h2>
+          <p class="section-text section-text-wide">
+            Com <strong>Belli K-Pelle</strong>, fortaleça cabelos, unhas e pele de dentro para fora com
+            uma cápsula por dia. Invista em uma beleza duradoura e autêntica,
+            proporcionando ao seu corpo vitaminas e minerais essenciais para uma transformação verdadeira.
+          </p>
+        </header>
+
+        <div class="feature-grid feature-grid-3">
+          <article class="feature-card">
+            <img
+              src="https://bellikpelle.com.br/wp-content/uploads/2024/07/Default_A_confident_woman_aged_40_with_voluminous_and_healthy_1.jpg"
+              alt="Mulher com cabelo saudável"
+              class="feature-image"
+            />
+            <h3 class="feature-title">Efeito Antiqueda Capilar</h3>
+            <p class="feature-text">
+              <strong>Belli K-Pelle</strong> contém Biotina e Zinco, que fortalecem os folículos capilares,
+              reduzindo a queda e promovendo o crescimento saudável dos fios.
+            </p>
+          </article>
+
+          <article class="feature-card">
+            <img
+              src="https://bellikpelle.com.br/wp-content/uploads/2024/07/Default_A_closeup_of_a_woman_aged_35_brushing_her_strong_shiny_1.jpg"
+              alt="Mulher com cabelo brilhante"
+              class="feature-image"
+            />
+            <h3 class="feature-title">Fortalece os Fios de Cabelo</h3>
+            <p class="feature-text">
+              Com Vitaminas A, C e E, <strong>Belli K-Pelle</strong> nutre os cabelos da raiz às pontas,
+              aumentando a resistência e prevenindo a quebra.
+            </p>
+          </article>
+
+          <article class="feature-card">
+            <img
+              src="https://bellikpelle.com.br/wp-content/uploads/2024/07/Default_A_closeup_of_a_woman_aged_40_with_radiant_healthy_skin_1.jpg"
+              alt="Mulher com pele radiante"
+              class="feature-image"
+            />
+            <h3 class="feature-title">Pele com Mais Vitalidade</h3>
+            <p class="feature-text">
+              A combinação dos 17 elementos do <strong>Belli K-Pelle</strong> estimula a renovação celular
+              e melhora a hidratação, resultando em uma pele mais luminosa e vitalizada.
+            </p>
+          </article>
+        </div>
+
+        <div class="feature-grid feature-grid-3">
+          <article class="feature-card">
+            <img
+              src="https://bellikpelle.com.br/wp-content/uploads/2024/07/Titulo-1.png"
+              alt="Unhas fortes"
+              class="feature-image"
+            />
+            <h3 class="feature-title">Unhas Mais Fortes</h3>
+            <p class="feature-text">
+              Rica em Biotina e Selênio, a fórmula de <strong>Belli K-Pelle</strong> fortalece as unhas,
+              evitando que se quebrem ou descamem.
+            </p>
+          </article>
+
+          <article class="feature-card">
+            <img
+              src="https://bellikpelle.com.br/wp-content/uploads/2024/07/Default_Create_a_highresolution_photorealistic_image_of_a_beau_3.jpg"
+              alt="Mulher com aparência saudável"
+              class="feature-image"
+            />
+            <h3 class="feature-title">Ação Antioxidante</h3>
+            <p class="feature-text">
+              Os antioxidantes presentes em <strong>Belli K-Pelle</strong>, como as Vitaminas E e C,
+              protegem as células contra os danos dos radicais livres, ajudando a manter a juventude da pele.
+            </p>
+          </article>
+
+          <article class="feature-card">
+            <img
+              src="https://bellikpelle.com.br/wp-content/uploads/2024/07/Titulo-2.png"
+              alt="Produção de colágeno"
+              class="feature-image"
+            />
+            <h3 class="feature-title">Maior Produção de Colágeno</h3>
+            <p class="feature-text">
+              <strong>Belli K-Pelle</strong> estimula a síntese de colágeno com cofatores essenciais para sua
+              produção, promovendo uma pele mais firme e suave.
+            </p>
+          </article>
+        </div>
+
+        <!-- ===================================================
+          IMAGEM DECORATIVA DA MULHER ELEGANTE
+          - Extraída do original
+          - Posicionada corretamente acima do CTA desta seção
+        ==================================================== -->
+        <div class="section-intro-model" aria-hidden="true">
+          <img
+            src="https://bellikpelle.com.br/wp-content/uploads/2024/07/Titulo-4.png"
+            alt="Mulher elegante representando os benefícios do produto"
+          />
+        </div>
+
+        <div class="cta-stack cta-stack--compact">
+          <a href="#comprar" class="btn btn-primary">Fortaleça as suas estruturas</a>
+          <img
+            class="secure-badge"
+            src="https://bellikpelle.com.br/wp-content/uploads/2024/07/COMPRA-SEGURA.png"
+            alt="Compra segura"
+          />
+        </div>
+      </div>
+    </section>
+
+    <!-- =====================================================
+      BLOCO DE DOR + SOLUÇÃO
+    ====================================================== -->
+    <section class="section section-story">
+      <div class="container story-grid">
+        <div class="story-media">
+          <img
+            src="https://bellikpelle.com.br/wp-content/uploads/2024/07/Story-BKP-3.png"
+            alt="Produto Belli K-Pelle"
+            class="story-product"
+          />
+        </div>
+
+        <div class="story-content">
+          <h2 class="section-title section-title-light">
+            Empodere-se com <span class="brand-highlight">BELLI K-PELLE</span>
+          </h2>
+
+          <p class="story-subtitle">Mais beleza e autoconfiança a cada cápsula!</p>
+
+          <div class="story-box">
+            <p>
+              Encontrar grandes quantidades de fios de cabelo na escova, no ralo do banheiro
+              ou nas roupas pode ser muito frustrante. E quando suas unhas lascam facilmente
+              ou sua pele está ressecada, pode ser difícil sentir-se confiante.
+            </p>
+            <p>
+              Pensando no autocuidado feminino, foi desenvolvido o
+              <strong class="brand-highlight-text">BELLI K-PELLE</strong>, um suplemento de micronutrição
+              avançada que tem surpreendido mulheres em todo o Brasil.
+            </p>
+          </div>
+
+          <div class="story-box">
+            <p>
+              Com uma fórmula cuidadosamente desenvolvida com vitaminas e minerais selecionados,
+              essas cápsulas gelatinosas de alta absorção fornecem o melhor material molecular
+              para proteger e fortalecer as estruturas do
+              <strong class="brand-highlight-text">cabelo, pele e unhas</strong>.
+            </p>
+            <p>
+              Com o <strong class="brand-highlight-text">BELLI K-PELLE</strong>, você pode finalmente ter
+              cabelos mais fortes e saudáveis, unhas bonitas e resistentes e uma pele mais
+              hidratada e radiante.
+            </p>
+          </div>
+
+          <div class="cta-stack cta-stack--compact">
+            <a href="#comprar" class="btn btn-primary">Quero realizar a minha beleza!</a>
+            <img
+              class="secure-badge"
+              src="https://bellikpelle.com.br/wp-content/uploads/2024/07/compra-segura-1.png"
+              alt="Compra segura"
+            />
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- =====================================================
+      FORMULAÇÃO / NUTRIENTES
+    ====================================================== -->
+    <section class="section section-formula">
+      <div class="container">
+        <header class="section-header">
+          <h2 class="section-title section-title-accent">
+            Conheça a formulação responsável por trazer toda a sua beleza interior para fora
+          </h2>
+          <p class="section-text section-text-wide">
+            Ao longo dos anos, o nosso corpo perde a capacidade de produzir sozinho colágeno e queratina,
+            essenciais para cabelos, pele e unhas saudáveis. Sem os nutrientes adequados,
+            essas estruturas se enfraquecem, perdem brilho e vitalidade.
+          </p>
+        </header>
+
+        <div class="nutrient-grid">
+          <article class="nutrient-card">
+            <img
+              src="https://bellikpelle.com.br/wp-content/uploads/2024/07/Antes.png"
+              alt="Fortaleça suas unhas"
+              class="nutrient-image"
+            />
+            <h3 class="nutrient-title">Fortaleça Suas Unhas</h3>
+            <ul class="nutrient-list">
+              <li><strong>Vitamina D:</strong> melhora a absorção de cálcio.</li>
+              <li><strong>Vitamina A:</strong> promove unhas mais fortes e resistentes.</li>
+              <li><strong>Zinco:</strong> contribui para a saúde das unhas.</li>
+              <li><strong>Ferro:</strong> ajuda a prevenir amolecimento.</li>
+            </ul>
+          </article>
+
+          <article class="nutrient-card">
+            <img
+              src="https://bellikpelle.com.br/wp-content/uploads/2024/07/Antes-1.png"
+              alt="Revitalize sua pele"
+              class="nutrient-image"
+            />
+            <h3 class="nutrient-title">Revitalize Sua Pele</h3>
+            <ul class="nutrient-list">
+              <li><strong>Vitamina C:</strong> promove a produção de colágeno.</li>
+              <li><strong>Vitamina E:</strong> antioxidante, protege contra radicais livres.</li>
+              <li><strong>Ácido Pantotênico:</strong> auxilia na regeneração da pele.</li>
+              <li><strong>Selênio:</strong> ajuda a proteger as células da pele.</li>
+              <li><strong>Vitamina B1:</strong> contribui para renovação celular.</li>
+            </ul>
+          </article>
+
+          <article class="nutrient-card">
+            <img
+              src="https://bellikpelle.com.br/wp-content/uploads/2024/07/Antes-4.png"
+              alt="Revigore seus fios"
+              class="nutrient-image"
+            />
+            <h3 class="nutrient-title">Revigore Seus Fios</h3>
+            <ul class="nutrient-list">
+              <li><strong>Vitamina B6:</strong> ajuda na prevenção da queda.</li>
+              <li><strong>Niacina:</strong> auxilia na saúde do couro cabeludo.</li>
+              <li><strong>Cobre:</strong> ajuda na formação de colágeno.</li>
+              <li><strong>Cromo:</strong> contribui para o fortalecimento dos fios.</li>
+              <li><strong>Biotina:</strong> fortalece e promove a saúde capilar.</li>
+            </ul>
+          </article>
+
+          <article class="nutrient-card">
+            <img
+              src="https://bellikpelle.com.br/wp-content/uploads/2024/07/Antes-3.png"
+              alt="Estimule o crescimento"
+              class="nutrient-image"
+            />
+            <h3 class="nutrient-title">Estimule o Crescimento</h3>
+            <ul class="nutrient-list">
+              <li><strong>Vitamina B12:</strong> necessária para a produção celular.</li>
+              <li><strong>Ácido Fólico:</strong> auxilia na renovação celular.</li>
+              <li><strong>Vitamina B2:</strong> promove crescimento saudável dos fios.</li>
+              <li><strong>Vitamina B3:</strong> contribui para a produção de queratina.</li>
+            </ul>
+          </article>
+        </div>
+
+        <div class="cta-stack cta-stack--compact">
+          <a href="#comprar" class="btn btn-primary">Quero realizar a minha beleza!</a>
+          <img
+            class="secure-badge"
+            src="https://bellikpelle.com.br/wp-content/uploads/2024/07/COMPRA-SEGURA.png"
+            alt="Compra segura"
+          />
+        </div>
+      </div>
+    </section>
+
+    <!-- =====================================================
+      EFICIÊNCIA / DIFERENCIAIS
+      - Mantido o que ajuda a conversão
+      - Card de tecnologia inserido no meio dos dois cards
+    ====================================================== -->
+    <section class="section section-differentials">
+      <div class="container">
+        <header class="section-header">
+          <h2 class="section-title section-title-light">
+            Por que o <span class="brand-highlight-light">BELLI K-PELLE</span> é tão eficiente?
+          </h2>
+        </header>
+
+        <div class="split-card">
+          <div class="split-card-media">
+            <h3 class="split-card-title">Absorção Rápida</h3>
+            <img
+              src="https://bellikpelle.com.br/wp-content/uploads/2024/07/Sem-nome-Miniatura-do-YouTube.png"
+              alt="Absorção rápida"
+            />
+          </div>
+
+          <div class="split-card-content">
+            <p>
+              As cápsulas gelatinosas de alta absorção do <strong>Belli K-Pelle</strong> garantem a dose
+              ideal de vitaminas e minerais diárias, promovendo resultados rápidos.
+            </p>
+            <p>
+              Com tecnologia única, aceleram a absorção de todos os elementos da fórmula,
+              intensificando os efeitos visíveis em menos tempo comparado a outros suplementos.
+            </p>
+            <p>
+              Tudo o que você precisará fazer é tomar <strong>uma cápsula ao dia</strong>.
+            </p>
+          </div>
+        </div>
+
+        <!-- ===================================================
+          CARD: TECNOLOGIA E EXPERIÊNCIA
+          - Inserido exatamente no meio dos dois cards desta seção
+          - Baseado no JSON original
+        ==================================================== -->
+        <div class="technology-card">
+          <div class="technology-grid">
+            <div class="technology-brand">
+              <h2 class="technology-title">Tecnologia e Experiência:</h2>
+
+              <div class="technology-logo-wrap">
+                <img
+                  src="https://bellikpelle.com.br/wp-content/uploads/2024/07/Homeoterapica_Positivo-01.png"
+                  alt="Logo Homeoterápica"
+                  class="technology-logo"
+                />
+              </div>
+
+              <div class="technology-person-wrap">
+                <img
+                  src="https://bellikpelle.com.br/wp-content/uploads/2024/07/maebracoscruzados-site.png"
+                  alt="Dra. Eneida Janiscki"
+                  class="technology-person"
+                />
+              </div>
+            </div>
+
+            <div class="technology-content">
+              <div class="technology-box">
+                <p>
+                  Há 30 anos no mercado, a <strong>Homeoterápica</strong> atua com uma missão:
+                  melhorar a saúde e qualidade de vida das pessoas, entregando produtos e serviços
+                  de qualidade, centrada no respeito, no acolhimento e na ética.
+                </p>
+                <p>
+                  Foi através desses valores que <strong>Eneida Janiscki</strong>, Farmacêutica Mestre
+                  e Doutora em Bioquímica, idealizou o <strong>BELLI K-PELLE</strong>.
+                </p>
+              </div>
+
+              <blockquote class="technology-quote">
+                “A mulher moderna soma afazeres profissionais e familiares. Muitas vezes cuida
+                mais dos outros do que de si mesma, sei disso, pois comigo também é assim.
+                Então, criei a linha Gandiva para o autocuidado feminino. O Belli K-Pelle é o
+                primeiro produto dessa linha e ele realiza plenamente a tarefa para o qual foi
+                desenvolvido: nutrir a sua beleza.”
+                <cite>– Dra. Eneida Janiscki</cite>
+              </blockquote>
+            </div>
+          </div>
+        </div>
+
+        <div class="split-card">
+          <div class="split-card-media split-card-media--center">
+            <h3 class="split-card-title">Aprovado pela ANVISA</h3>
+            <img
+              src="https://bellikpelle.com.br/wp-content/uploads/2024/07/natural.png"
+              alt="Produto aprovado pela ANVISA"
+            />
+          </div>
+
+          <div class="split-card-content split-card-content--center">
+            <p>
+              Após passar por rigorosos testes, a fórmula 100% natural do
+              <strong>Belli K-Pelle</strong> recebeu aprovação da <strong>ANVISA</strong>.
+            </p>
+            <p>
+              Seu poder de ultra absorção ajuda a oferecer efeitos rápidos e duradouros.
+            </p>
+          </div>
+        </div>
+
+        <div class="cta-stack cta-stack--compact">
+          <a href="#comprar" class="btn btn-primary">Quero realizar a minha beleza!</a>
+          <img
+            class="secure-badge"
+            src="https://bellikpelle.com.br/wp-content/uploads/2024/07/compra-segura-1.png"
+            alt="Compra segura"
+          />
+        </div>
+      </div>
+    </section>
+
+    <!-- =====================================================
+      OFERTAS / COMPRA
+      - Âncora principal da conversão
+    ====================================================== -->
+    <section class="section section-offers" id="comprar">
+      <div class="container">
+        <header class="section-header">
+          <h2 class="section-title section-title-light">
+            Chegou a hora de fazer a diferença no seu corpo e garantir a dose necessária
+            de vitaminas e minerais que o seu brilho exige
+          </h2>
+          <p class="section-text section-text-light">Escolha o melhor tratamento para você</p>
+          <p class="section-note section-note-light">
+            1 pote contém 60 cápsulas = 2 meses de tratamento
+          </p>
+        </header>
+
+        <!-- ===================================================
+          GATILHO DE URGÊNCIA
+          - Refeito com visual premium, contraste, destaque e animação
+        ==================================================== -->
+        <div class="offer-urgency" aria-label="Informação de urgência da promoção">
+          <div class="offer-urgency-badge">⚠️ OFERTA EM DESTAQUE</div>
+          <p class="offer-urgency-text">
+            <strong>Último lote promocional com condições especiais disponível agora.</strong>
+            Garanta seu tratamento antes do encerramento desta condição.
+          </p>
+        </div>
+
+        <div class="offer-grid">
+          <a
+            class="offer-card"
+            href="https://checkout.ticto.app/OEB54D7D8?pid=AF1F5472EF"
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label="Comprar tratamento 3"
+          >
+            <img
+              src="https://bellikpelle.com.br/wp-content/uploads/2024/07/TRATAMENTO-PARA-3.png"
+              alt="Oferta tratamento 3"
+            />
+          </a>
+
+          <a
+            class="offer-card"
+            href="https://checkout.ticto.app/OAF938958?pid=AF1F5472EF"
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label="Comprar tratamento 2"
+          >
+            <img
+              src="https://bellikpelle.com.br/wp-content/uploads/2024/07/TRATAMENTO-PARA-2.png"
+              alt="Oferta tratamento 2"
+            />
+          </a>
+
+          <a
+            class="offer-card"
+            href="https://checkout.ticto.app/OFC9448BB?pid=AF1F5472EF"
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label="Comprar tratamento 1"
+          >
+            <img
+              src="https://bellikpelle.com.br/wp-content/uploads/2024/07/TRATAMENTO-PARA-1-1.png"
+              alt="Oferta tratamento 1"
+            />
+          </a>
+        </div>
+
+        <!-- ===================================================
+          SELOS DE SEGURANÇA ADICIONAIS
+          - Refeito em bloco visual elegante e coeso com a página
+        ==================================================== -->
+        <div class="security-seals-extra" aria-label="Selos adicionais de segurança">
+          <div class="security-seals-row">
+            <div class="security-seal-item">
+              <span class="security-seal-icon" aria-hidden="true">🔒</span>
+              <span class="security-seal-text">Checkout 100% protegido</span>
+            </div>
+
+            <div class="security-seal-item">
+              <span class="security-seal-icon" aria-hidden="true">🛡️</span>
+              <span class="security-seal-text">Dados protegidos com criptografia</span>
+            </div>
+
+            <div class="security-seal-item">
+              <span class="security-seal-icon" aria-hidden="true">✅</span>
+              <span class="security-seal-text">Garantia oficial de 90 dias</span>
+            </div>
+
+            <div class="security-seal-item">
+              <span class="security-seal-icon" aria-hidden="true">📦</span>
+              <span class="security-seal-text">Envio rápido para todo o Brasil</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- =====================================================
+      GARANTIA
+    ====================================================== -->
+    <section class="section section-guarantee">
+      <div class="container guarantee-grid">
+        <div class="guarantee-content">
+          <h2 class="section-title section-title-accent">Garantia de 90 dias</h2>
+
+          <p class="section-text">
+            É isso mesmo. Confiamos tanto na eficácia do <strong>Belli K-Pelle</strong>
+            que você tem <strong>90 dias de garantia total</strong>.
+          </p>
+
+          <p class="section-text">
+            Se você fizer o uso da fórmula e não sentir resultados nas estruturas do seu cabelo,
+            pele ou unhas, poderá solicitar o seu dinheiro de volta.
+          </p>
+
+          <p class="guarantee-reminder">
+            Lembre-se: é necessário tomar <strong>uma cápsula por dia</strong>.
+          </p>
+
+          <div class="cta-stack cta-stack--compact">
+            <a href="#comprar" class="btn btn-primary">Quero realizar a minha beleza</a>
+            <img
+              class="secure-badge"
+              src="https://bellikpelle.com.br/wp-content/uploads/2024/07/COMPRA-SEGURA.png"
+              alt="Compra segura"
+            />
+          </div>
+        </div>
+
+        <div class="guarantee-media">
+          <img
+            src="https://bellikpelle.com.br/wp-content/uploads/2024/07/Design-sem-nome-58.png"
+            alt="Garantia de 90 dias"
+          />
+        </div>
+      </div>
+    </section>
+
+    <!-- =====================================================
+      DEPOIMENTOS
+      - Corrigido para 4 pessoas diferentes
+    ====================================================== -->
+    <section class="section section-testimonials">
+      <div class="container">
+        <header class="section-header">
+          <h2 class="section-title section-title-accent">O que as nossas clientes dizem</h2>
+        </header>
+
+        <div class="testimonial-grid">
+          <article class="testimonial-card">
+            <div class="testimonial-avatar">
+              <img
+                src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&w=300&q=80"
+                alt="Júlia Carvalho"
+              />
+            </div>
+            <h3 class="testimonial-name">Júlia Carvalho</h3>
+            <p class="testimonial-text">
+              “O Belli K-Pelle virou parte da minha rotina. Tenho tomado uma cápsula junto com
+              o café da manhã já faz um mês. O que mais me impressionou foi a força do meu cabelo.
+              Super recomendo!”
+            </p>
+            <span class="testimonial-source">via WhatsApp</span>
+          </article>
+
+          <article class="testimonial-card">
+            <div class="testimonial-avatar">
+              <img
+                src="https://images.unsplash.com/photo-1438761681033-6461ffad8d80?auto=format&fit=crop&w=300&q=80"
+                alt="Roberta Assis"
+              />
+            </div>
+            <h3 class="testimonial-name">Roberta Assis</h3>
+            <p class="testimonial-text">
+              “O produto é maravilhoso. A rotina puxada não me permite cuidar da alimentação
+              da melhor maneira, e sinto que o suplemento tem trazido de volta a vitalidade
+              que eu perdi na correria. Minhas unhas nunca mais quebraram e meu cabelo está
+              com um brilho que nunca teve antes.”
+            </p>
+            <span class="testimonial-source">via WhatsApp</span>
+          </article>
+
+          <article class="testimonial-card">
+            <div class="testimonial-avatar">
+              <img
+                src="https://images.unsplash.com/photo-1488426862026-3ee34a7d66df?auto=format&fit=crop&w=300&q=80"
+                alt="Fernanda Lima"
+              />
+            </div>
+            <h3 class="testimonial-name">Fernanda Lima</h3>
+            <p class="testimonial-text">
+              “Com poucas semanas de uso, já percebi minhas unhas mais resistentes e meu cabelo
+              com aparência muito mais forte. Gostei bastante da praticidade de tomar só uma cápsula ao dia.”
+            </p>
+            <span class="testimonial-source">via WhatsApp</span>
+          </article>
+
+          <article class="testimonial-card">
+            <div class="testimonial-avatar">
+              <img
+                src="https://images.unsplash.com/photo-1544005313-94ddf0286df2?auto=format&fit=crop&w=300&q=80"
+                alt="Patrícia Souza"
+              />
+            </div>
+            <h3 class="testimonial-name">Patrícia Souza</h3>
+            <p class="testimonial-text">
+              “Eu estava buscando algo que ajudasse cabelo, pele e unhas ao mesmo tempo, e o
+              Belli K-Pelle me surpreendeu. Minha pele ficou com aspecto melhor e meus fios parecem bem mais encorpados.”
+            </p>
+            <span class="testimonial-source">via WhatsApp</span>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- =====================================================
+      COMENTÁRIOS DO FACEBOOK
+      - Inserido a partir do JSON original
+      - Estrutura HTML separada para estilização posterior no CSS
+      - Mantidas 6 imagens originais dos comentários
+    ====================================================== -->
+    <section class="section section-facebook-comments" aria-label="Comentários do Facebook">
+      <div class="container">
+        <header class="section-header facebook-comments-header">
+          <div class="facebook-comments-title-wrap">
+            <span class="facebook-comments-icon" aria-hidden="true">f</span>
+            <h2 class="section-title section-title-accent">Comentários do Facebook:</h2>
+          </div>
+        </header>
+
+        <div class="facebook-comments-grid">
+          <div class="facebook-comments-column">
+            <figure class="facebook-comment-card">
+              <img
+                src="https://bellikpelle.com.br/wp-content/uploads/2024/07/Inserir-um-titulo-410-x-280-px-1.png"
+                alt="Comentário do Facebook de Adriana Hoffmann"
+              />
+            </figure>
+
+            <figure class="facebook-comment-card">
+              <img
+                src="https://bellikpelle.com.br/wp-content/uploads/2024/07/Inserir-um-titulo-410-x-280-px-3.png"
+                alt="Comentário do Facebook de Luciana Mendes"
+              />
+            </figure>
+          </div>
+
+          <div class="facebook-comments-column">
+            <figure class="facebook-comment-card">
+              <img
+                src="https://bellikpelle.com.br/wp-content/uploads/2024/07/Inserir-um-titulo-410-x-280-px-2-1.png"
+                alt="Comentário do Facebook de Silvete Kaminski"
+              />
+            </figure>
+
+            <figure class="facebook-comment-card">
+              <img
+                src="https://bellikpelle.com.br/wp-content/uploads/2024/07/Inserir-um-titulo-410-x-280-px-4.png"
+                alt="Comentário do Facebook de Cássia de Oliveira"
+              />
+            </figure>
+          </div>
+
+          <div class="facebook-comments-column">
+            <figure class="facebook-comment-card">
+              <img
+                src="https://bellikpelle.com.br/wp-content/uploads/2024/07/Inserir-um-titulo-410-x-280-px.png"
+                alt="Comentário do Facebook de Gabriela S. Bianchi"
+              />
+            </figure>
+
+            <figure class="facebook-comment-card">
+              <img
+                src="https://bellikpelle.com.br/wp-content/uploads/2024/07/Inserir-um-titulo-410-x-280-px-6.png"
+                alt="Comentário do Facebook de Irene R. Mello"
+              />
+            </figure>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- =====================================================
+      FAQ
+      - Estrutura em acordeão para JS controlar depois
+      - HTML já pronto com botões e áreas de resposta
+    ====================================================== -->
+    <section class="section section-faq" id="faq">
+      <div class="container">
+        <header class="section-header">
+          <h2 class="section-title section-title-accent">Dúvidas frequentes</h2>
+        </header>
+
+        <div class="faq-grid">
+          <div class="faq-column">
+            <article class="faq-item">
+              <button class="faq-question" type="button" aria-expanded="false">
+                Quando vou ter resultados?
+              </button>
+              <div class="faq-answer" hidden>
+                <p>
+                  É recomendado o uso por 3 meses consecutivos para obter os melhores resultados.
+                  No entanto, há relatos de pessoas que já sentem uma boa diferença entre 2 e 4 semanas.
+                </p>
+              </div>
+            </article>
+
+            <article class="faq-item">
+              <button class="faq-question" type="button" aria-expanded="false">
+                Como devo utilizar o Belli K-Pelle?
+              </button>
+              <div class="faq-answer" hidden>
+                <p>
+                  Tudo o que você precisará fazer é tomar uma cápsula por dia,
+                  preferencialmente após alguma refeição.
+                </p>
+              </div>
+            </article>
+
+            <article class="faq-item">
+              <button class="faq-question" type="button" aria-expanded="false">
+                Belli K-Pelle é seguro?
+              </button>
+              <div class="faq-answer" hidden>
+                <p>
+                  O produto é apresentado como seguro. Ainda assim, não interrompa o uso de
+                  medicamentos ou tratamentos sem orientação médica.
+                </p>
+              </div>
+            </article>
+          </div>
+
+          <div class="faq-column">
+            <article class="faq-item">
+              <button class="faq-question" type="button" aria-expanded="false">
+                Belli K-Pelle é aprovado pela ANVISA?
+              </button>
+              <div class="faq-answer" hidden>
+                <p>
+                  Sim. O Belli K-Pelle passou por testes e é apresentado como aprovado pela ANVISA.
+                </p>
+              </div>
+            </article>
+
+            <article class="faq-item">
+              <button class="faq-question" type="button" aria-expanded="false">
+                Qual é a tabela nutricional?
+              </button>
+              <div class="faq-answer faq-answer-image" hidden>
+                <img
+                  src="https://bellikpelle.com.br/wp-content/uploads/2024/07/Design-sem-nome-60-277x300.png"
+                  alt="Tabela nutricional do Belli K-Pelle"
+                />
+              </div>
+            </article>
+
+            <article class="faq-item">
+              <button class="faq-question" type="button" aria-expanded="false">
+                Qual o tempo de entrega?
+              </button>
+              <div class="faq-answer" hidden>
+                <p>
+                  Após a confirmação do pagamento, a equipe de logística faz a postagem o mais rápido possível.
+                  Pedidos realizados até as 16h podem ser postados no mesmo dia.
+                </p>
+              </div>
+            </article>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  <!-- =========================================================
+    RODAPÉ
+    - Mantido apenas o essencial
+  ========================================================== -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-payment" id="formas-pagamento">
+        <h2 class="footer-title">Formas de pagamento</h2>
+
+        <div class="payment-images">
+          <img
+            src="https://bellikpelle.com.br/wp-content/uploads/2024/07/pagamento-new.png"
+            alt="Formas de pagamento aceitas"
+            class="payment-main"
+          />
+          <img
+            src="https://bellikpelle.com.br/wp-content/uploads/2024/07/pix.png"
+            alt="Pagamento via Pix"
+            class="payment-pix"
+          />
+        </div>
+      </div>
+
+      <div class="footer-security">
+        <h2 class="footer-title">Site seguro</h2>
+        <img
+          src="https://bellikpelle.com.br/wp-content/uploads/2023/01/552x200-4.png"
+          alt="Selos de segurança do site"
+          class="footer-security-image"
+        />
+      </div>
+
+      <div class="footer-bottom">
+        <p>Homeoterápica © 2024 Todos os direitos reservados</p>
+        <p>
+          O produto apresentado nesta página não se destina a diagnosticar, tratar,
+          curar ou prevenir qualquer doença. O aconselhamento médico é sempre indicado.
+          Os resultados individuais podem variar.
+        </p>
+        <p>Fone: (11) 3277-1007</p>
+        <p>R. Heitor Peixoto, 530 - Cambuci, São Paulo - SP</p>
+        <p>CNPJ 03.016.035/0001-07</p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- =========================================================
+    JS separado
+    - O script.js ficará responsável por:
+      1) acordeão do FAQ
+      2) comportamento suave das âncoras
+      3) possíveis eventos/trackings futuros
+  ========================================================== -->
+  <script type="module" src="./js/script.js"></script>
+</body>
+</html>
