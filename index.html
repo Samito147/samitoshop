@@ -64,6 +64,21 @@
 </head>
 <body>
   <!-- =========================================================
+    META PIXEL NOSCRIPT
+    - Fallback para rastreamento básico quando JS estiver desabilitado
+    - Não interfere no funcionamento da página
+  ========================================================== -->
+  <noscript>
+    <img
+      height="1"
+      width="1"
+      style="display:none"
+      src="https://www.facebook.com/tr?id=25588035257562551&ev=PageView&noscript=1"
+      alt=""
+    />
+  </noscript>
+
+  <!-- =========================================================
     CABEÇALHO / NAVEGAÇÃO SUPERIOR
     - Contém atalhos por âncora
     - Estrutura limpa e sem excesso de wrappers
@@ -136,7 +151,16 @@
           </div>
 
           <div class="cta-stack">
-            <a href="#comprar" class="btn btn-primary">Quero realizar a minha beleza!</a>
+            <a
+              href="#comprar"
+              class="btn btn-primary"
+              id="cta-hero"
+              data-cta="hero_scroll_comprar"
+              data-plan="hero"
+              data-price="0"
+            >
+              Quero realizar a minha beleza!
+            </a>
             <img
               class="secure-badge"
               src="https://bellikpelle.com.br/wp-content/uploads/2024/07/COMPRA-SEGURA.png"
@@ -259,7 +283,16 @@
         </div>
 
         <div class="cta-stack cta-stack--compact">
-          <a href="#comprar" class="btn btn-primary">Fortaleça as suas estruturas</a>
+          <a
+            href="#comprar"
+            class="btn btn-primary"
+            id="cta-intro"
+            data-cta="intro_scroll_comprar"
+            data-plan="intro"
+            data-price="0"
+          >
+            Fortaleça as suas estruturas
+          </a>
           <img
             class="secure-badge"
             src="https://bellikpelle.com.br/wp-content/uploads/2024/07/COMPRA-SEGURA.png"
@@ -317,7 +350,16 @@
           </div>
 
           <div class="cta-stack cta-stack--compact">
-            <a href="#comprar" class="btn btn-primary">Quero realizar a minha beleza!</a>
+            <a
+              href="#comprar"
+              class="btn btn-primary"
+              id="cta-story"
+              data-cta="story_scroll_comprar"
+              data-plan="story"
+              data-price="0"
+            >
+              Quero realizar a minha beleza!
+            </a>
             <img
               class="secure-badge"
               src="https://bellikpelle.com.br/wp-content/uploads/2024/07/compra-segura-1.png"
@@ -409,7 +451,16 @@
         </div>
 
         <div class="cta-stack cta-stack--compact">
-          <a href="#comprar" class="btn btn-primary">Quero realizar a minha beleza!</a>
+          <a
+            href="#comprar"
+            class="btn btn-primary"
+            id="cta-formula"
+            data-cta="formula_scroll_comprar"
+            data-plan="formula"
+            data-price="0"
+          >
+            Quero realizar a minha beleza!
+          </a>
           <img
             class="secure-badge"
             src="https://bellikpelle.com.br/wp-content/uploads/2024/07/COMPRA-SEGURA.png"
@@ -529,7 +580,16 @@
         </div>
 
         <div class="cta-stack cta-stack--compact">
-          <a href="#comprar" class="btn btn-primary">Quero realizar a minha beleza!</a>
+          <a
+            href="#comprar"
+            class="btn btn-primary"
+            id="cta-differentials"
+            data-cta="differentials_scroll_comprar"
+            data-plan="differentials"
+            data-price="0"
+          >
+            Quero realizar a minha beleza!
+          </a>
           <img
             class="secure-badge"
             src="https://bellikpelle.com.br/wp-content/uploads/2024/07/compra-segura-1.png"
@@ -571,6 +631,10 @@
         <div class="offer-grid">
           <a
             class="offer-card"
+            id="cta-offer-tratamento-3"
+            data-cta="comprar_tratamento_3"
+            data-plan="tratamento_3"
+            data-price="197.00"
             href="https://checkout.ticto.app/OEB54D7D8?pid=AF1F5472EF"
             target="_blank"
             rel="noopener noreferrer"
@@ -584,6 +648,10 @@
 
           <a
             class="offer-card"
+            id="cta-offer-tratamento-2"
+            data-cta="comprar_tratamento_2"
+            data-plan="tratamento_2"
+            data-price="147.00"
             href="https://checkout.ticto.app/OAF938958?pid=AF1F5472EF"
             target="_blank"
             rel="noopener noreferrer"
@@ -597,6 +665,10 @@
 
           <a
             class="offer-card"
+            id="cta-offer-tratamento-1"
+            data-cta="comprar_tratamento_1"
+            data-plan="tratamento_1"
+            data-price="97.00"
             href="https://checkout.ticto.app/OFC9448BB?pid=AF1F5472EF"
             target="_blank"
             rel="noopener noreferrer"
@@ -662,7 +734,16 @@
           </p>
 
           <div class="cta-stack cta-stack--compact">
-            <a href="#comprar" class="btn btn-primary">Quero realizar a minha beleza</a>
+            <a
+              href="#comprar"
+              class="btn btn-primary"
+              id="cta-guarantee"
+              data-cta="guarantee_scroll_comprar"
+              data-plan="guarantee"
+              data-price="0"
+            >
+              Quero realizar a minha beleza
+            </a>
             <img
               class="secure-badge"
               src="https://bellikpelle.com.br/wp-content/uploads/2024/07/COMPRA-SEGURA.png"
@@ -966,6 +1047,7 @@
       1) acordeão do FAQ
       2) comportamento suave das âncoras
       3) possíveis eventos/trackings futuros
+      4) integração com o Meta Pixel
   ========================================================== -->
   <script type="module" src="./js/script.js"></script>
 </body>
