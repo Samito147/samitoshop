@@ -19,6 +19,7 @@
    10) Tracking de CTAs internos de rolagem
    11) Tracking de FAQ
    12) Tracking de visualização da seção de ofertas
+   13) Toasts sociais delicados e aleatórios para prova social
 
    OBSERVAÇÃO:
    Este arquivo foi feito para a estrutura HTML entregue.
@@ -38,6 +39,7 @@ document.addEventListener("DOMContentLoaded", () => {
   initSmoothAnchorScroll();
   initActiveNavigation();
   initFacebookPixelTracking();
+  initSocialToasts();
 });
 
 
@@ -1177,3 +1179,451 @@ function normalizeText(text) {
 // function initFutureFeatures() {
 //   // Área reservada para melhorias futuras.
 // }
+
+
+/* =========================================================
+   29) UTILITÁRIOS DOS TOASTS
+   ---------------------------------------------------------
+   RESPONSABILIDADE:
+   - Fornecer funções auxiliares para aleatoriedade
+   - Evitar dependências externas
+   - Manter o módulo de toasts autônomo
+========================================================= */
+function randomInt(min, max) {
+  const safeMin = Math.ceil(Number(min) || 0);
+  const safeMax = Math.floor(Number(max) || 0);
+
+  if (safeMax <= safeMin) return safeMin;
+
+  return Math.floor(Math.random() * (safeMax - safeMin + 1)) + safeMin;
+}
+
+function pickRandom(list) {
+  if (!Array.isArray(list) || !list.length) return "";
+  return list[randomInt(0, list.length - 1)];
+}
+
+function log(...args) {
+  try {
+    console.log("[script.js]", ...args);
+  } catch (_) {
+    /* silêncio elegante */
+  }
+}
+
+
+/* =========================================================
+   30) CONFIGURAÇÕES DOS TOASTS SOCIAIS
+   ---------------------------------------------------------
+   RESPONSABILIDADE:
+   - Centralizar tempos, limites e comportamento
+   - Permitir manutenção simples sem tocar
+     na estrutura principal do script
+========================================================= */
+const SOCIAL_TOASTS_CONFIG = {
+  ENABLED: true,
+  MAX_VISIBLE: 2,
+  VISIBLE_MS: 5200,
+  FIRST_DELAY_MIN_MS: 3500,
+  FIRST_DELAY_MAX_MS: 7000,
+  INTERVAL_MIN_MS: 6500,
+  INTERVAL_MAX_MS: 12000,
+  CHANCE_PER_CYCLE: 0.86
+};
+
+
+/* =========================================================
+   31) TOASTS SOCIAIS DELICADOS — BELLI K PELE
+   ---------------------------------------------------------
+   RESPONSABILIDADE:
+   - Exibir provas sociais discretas e aleatórias
+   - Manter visual feminino, leve e transparente
+   - Não interferir na estrutura da página
+   - Funcionar sem depender de HTML adicional
+========================================================= */
+const TOASTS = {
+  injected: false,
+  root: null,
+  timerId: null,
+  activeCount: 0,
+
+  /* -------------------------------------------
+     Lista de nomes femininos para manter
+     coerência com o público do produto
+  ------------------------------------------- */
+  names: [
+    "Maria", "Joana", "Bruna", "Renata", "Patrícia", "Fernanda", "Camila",
+    "Juliana", "Paula", "Larissa", "Bianca", "Aline", "Daniele", "Carla",
+    "Vanessa", "Priscila", "Tatiane", "Rosana", "Débora", "Eliane", "Luciana",
+    "Beatriz", "Gabriela", "Natália", "Letícia", "Marina", "Amanda", "Isabela"
+  ],
+
+  socials: ["Instagram"],
+
+  templates: [
+    {
+      icon: "✨",
+      title: "Nova adesão",
+      build() {
+        return `${pickRandom(TOASTS.names)} acabou de aderir 3 meses de tratamento`;
+      }
+    },
+    {
+      icon: "🌷",
+      title: "Pedido confirmado",
+      build() {
+        return `${pickRandom(TOASTS.names)} comprou 3 potes com desconto`;
+      }
+    },
+    {
+      icon: "💕",
+      title: "Tratamento garantido",
+      build() {
+        return `${pickRandom(TOASTS.names)} comprou um pote e garantiu um mês de tratamento`;
+      }
+    },
+    {
+      icon: "📷",
+      title: "Compartilhamento",
+      build() {
+        return `${pickRandom(TOASTS.names)} compartilhou o produto no Instagram`;
+      }
+    },
+    {
+      icon: "💗",
+      title: "Instagram",
+      build() {
+        return `${pickRandom(TOASTS.names)} seguiu a nossa página no Instagram`;
+      }
+    },
+    {
+      icon: "👁️",
+      title: "Agora",
+      build() {
+        return `${randomInt(12, 48)} pessoas estão vendo a página agora`;
+      }
+    }
+  ],
+
+  injectCSS() {
+    if (TOASTS.injected) return;
+    TOASTS.injected = true;
+
+    const css = `
+.toast-stack{
+  position: fixed;
+  right: 16px;
+  bottom: 16px;
+  z-index: 9998;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 10px;
+  pointer-events: none;
+  width: min(370px, calc(100vw - 24px));
+}
+
+.toast-item{
+  position: relative;
+  overflow: hidden;
+  width: 100%;
+  min-height: 74px;
+  padding: 14px 16px 14px 16px;
+  border-radius: 20px;
+  border: 1px solid rgba(255,255,255,.26);
+  background:
+    linear-gradient(135deg, rgba(255,255,255,.18), rgba(255,255,255,.08)),
+    linear-gradient(180deg, rgba(255, 230, 240, .28), rgba(255, 210, 225, .12));
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  box-shadow:
+    0 20px 48px rgba(83, 26, 49, .14),
+    inset 0 1px 0 rgba(255,255,255,.22);
+  color: #5f2940;
+  opacity: 0;
+  transform: translateY(16px) scale(.98);
+  transition: opacity 280ms ease, transform 280ms ease;
+}
+
+.toast-item.is-visible{
+  opacity: 1;
+  transform: translateY(0) scale(1);
+}
+
+.toast-item.is-leaving{
+  opacity: 0;
+  transform: translateY(8px) scale(.98);
+}
+
+.toast-item__bgicon{
+  position: absolute;
+  right: 10px;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 54px;
+  line-height: 1;
+  color: rgba(169, 78, 118, .11);
+  pointer-events: none;
+  user-select: none;
+}
+
+.toast-item__row{
+  position: relative;
+  z-index: 1;
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+}
+
+.toast-item__badge{
+  flex: 0 0 40px;
+  width: 40px;
+  height: 40px;
+  border-radius: 14px;
+  display: grid;
+  place-items: center;
+  border: 1px solid rgba(255,255,255,.34);
+  background: linear-gradient(180deg, rgba(255,255,255,.34), rgba(255,255,255,.16));
+  box-shadow:
+    inset 0 1px 0 rgba(255,255,255,.32),
+    0 8px 22px rgba(151, 68, 105, .10);
+  font-size: 17px;
+}
+
+.toast-item__content{
+  min-width: 0;
+  flex: 1;
+}
+
+.toast-item__title{
+  margin: 0 0 4px 0;
+  font-size: 11.5px;
+  line-height: 1.15;
+  font-weight: 800;
+  color: rgba(114, 49, 74, .74);
+  letter-spacing: .08em;
+  text-transform: uppercase;
+}
+
+.toast-item__text{
+  margin: 0;
+  font-size: 14px;
+  line-height: 1.45;
+  font-weight: 700;
+  color: rgba(88, 34, 55, .96);
+}
+
+.toast-item__progress{
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  height: 2px;
+  width: 100%;
+  background: linear-gradient(90deg, rgba(214, 116, 156, .55), rgba(255,255,255,.15));
+  transform-origin: left center;
+  animation: toastProgress linear forwards;
+}
+
+@keyframes toastProgress{
+  from{ transform: scaleX(1); }
+  to{ transform: scaleX(0); }
+}
+
+@media (max-width: 640px){
+  .toast-stack{
+    right: 12px;
+    left: 12px;
+    bottom: 12px;
+    width: auto;
+    align-items: stretch;
+  }
+
+  .toast-item{
+    border-radius: 18px;
+    min-height: 68px;
+    padding: 13px 14px;
+  }
+
+  .toast-item__bgicon{
+    font-size: 46px;
+    right: 8px;
+  }
+
+  .toast-item__badge{
+    width: 36px;
+    height: 36px;
+    border-radius: 12px;
+    flex-basis: 36px;
+    font-size: 15px;
+  }
+
+  .toast-item__text{
+    font-size: 13.5px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce){
+  .toast-item,
+  .toast-item__progress{
+    transition: none !important;
+    animation: none !important;
+  }
+}
+    `.trim();
+
+    const style = document.createElement("style");
+    style.setAttribute("data-belli", "social-toasts");
+    style.textContent = css;
+    document.head.appendChild(style);
+  },
+
+  ensureRoot() {
+    if (TOASTS.root) return TOASTS.root;
+
+    TOASTS.injectCSS();
+
+    const root = document.createElement("div");
+    root.className = "toast-stack";
+    root.setAttribute("aria-live", "polite");
+    root.setAttribute("aria-atomic", "false");
+    document.body.appendChild(root);
+
+    TOASTS.root = root;
+    return root;
+  },
+
+  canShow() {
+    if (!SOCIAL_TOASTS_CONFIG.ENABLED) return false;
+    if (document.hidden) return false;
+    if (TOASTS.activeCount >= SOCIAL_TOASTS_CONFIG.MAX_VISIBLE) return false;
+    return true;
+  },
+
+  buildToastData() {
+    const template = pickRandom(TOASTS.templates);
+    if (!template) return null;
+
+    return {
+      icon: template.icon || "•",
+      title: template.title || "Atualização",
+      text: template.build()
+    };
+  },
+
+  show(data) {
+    if (!data || !TOASTS.canShow()) return;
+
+    const root = TOASTS.ensureRoot();
+    const toast = document.createElement("div");
+    toast.className = "toast-item";
+    toast.setAttribute("role", "status");
+
+    toast.innerHTML = `
+<div class="toast-item__bgicon" aria-hidden="true">${data.icon}</div>
+<div class="toast-item__row">
+  <div class="toast-item__badge" aria-hidden="true">${data.icon}</div>
+  <div class="toast-item__content">
+    <p class="toast-item__title">${data.title}</p>
+    <p class="toast-item__text">${data.text}</p>
+  </div>
+</div>
+<div class="toast-item__progress" style="animation-duration:${SOCIAL_TOASTS_CONFIG.VISIBLE_MS}ms"></div>
+    `.trim();
+
+    root.appendChild(toast);
+    TOASTS.activeCount += 1;
+
+    requestAnimationFrame(() => {
+      toast.classList.add("is-visible");
+    });
+
+    window.setTimeout(() => {
+      toast.classList.add("is-leaving");
+
+      window.setTimeout(() => {
+        try {
+          toast.remove();
+        } catch (_) {
+          /* silêncio */
+        }
+        TOASTS.activeCount = Math.max(0, TOASTS.activeCount - 1);
+      }, 320);
+    }, SOCIAL_TOASTS_CONFIG.VISIBLE_MS);
+  },
+
+  maybeShow() {
+    if (!TOASTS.canShow()) return;
+    if (Math.random() > SOCIAL_TOASTS_CONFIG.CHANCE_PER_CYCLE) return;
+
+    const data = TOASTS.buildToastData();
+    if (!data) return;
+
+    TOASTS.show(data);
+  },
+
+  getNextDelay(isFirst = false) {
+    if (isFirst) {
+      return randomInt(
+        SOCIAL_TOASTS_CONFIG.FIRST_DELAY_MIN_MS,
+        SOCIAL_TOASTS_CONFIG.FIRST_DELAY_MAX_MS
+      );
+    }
+
+    return randomInt(
+      SOCIAL_TOASTS_CONFIG.INTERVAL_MIN_MS,
+      SOCIAL_TOASTS_CONFIG.INTERVAL_MAX_MS
+    );
+  },
+
+  scheduleNext(isFirst = false) {
+    if (TOASTS.timerId) {
+      clearTimeout(TOASTS.timerId);
+      TOASTS.timerId = null;
+    }
+
+    const delay = TOASTS.getNextDelay(isFirst);
+
+    TOASTS.timerId = window.setTimeout(() => {
+      TOASTS.maybeShow();
+      TOASTS.scheduleNext(false);
+    }, delay);
+  },
+
+  bindVisibility() {
+    document.addEventListener("visibilitychange", () => {
+      if (document.hidden) {
+        if (TOASTS.timerId) {
+          clearTimeout(TOASTS.timerId);
+          TOASTS.timerId = null;
+        }
+        return;
+      }
+
+      if (!TOASTS.timerId) {
+        TOASTS.scheduleNext(false);
+      }
+    });
+  },
+
+  bind() {
+    if (!SOCIAL_TOASTS_CONFIG.ENABLED) return;
+
+    TOASTS.ensureRoot();
+    TOASTS.bindVisibility();
+    TOASTS.scheduleNext(true);
+
+    log("Social toasts bound.");
+  }
+};
+
+
+/* =========================================================
+   32) INICIALIZAÇÃO DOS TOASTS SOCIAIS
+   ---------------------------------------------------------
+   RESPONSABILIDADE:
+   - Subir o módulo de prova social sem exigir
+     qualquer alteração no HTML existente
+========================================================= */
+function initSocialToasts() {
+  TOASTS.bind();
+}
