@@ -376,7 +376,7 @@ function updateActiveNavLink(linkMap, activeHash) {
    - InitiateCheckout (standard)
 ========================================================= */
 function initFacebookPixelTracking() {
-  const PIXEL_ID = "25588035257562551";
+  const PIXEL_ID = "1266205174841627";
 
   /* -------------------------------------------
      Evita inicialização duplicada do pixel
