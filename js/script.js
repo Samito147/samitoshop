@@ -40,6 +40,7 @@ document.addEventListener("DOMContentLoaded", () => {
   initActiveNavigation();
   initFacebookPixelTracking();
   initSocialToasts();
+  initSelectiveHiddenCTAs();
 });
 
 
@@ -1626,4 +1627,220 @@ const TOASTS = {
 ========================================================= */
 function initSocialToasts() {
   TOASTS.bind();
+}
+
+
+/* =========================================================
+   33) REMOÇÃO CIRÚRGICA DE CTAS ESPECÍFICOS
+   ---------------------------------------------------------
+   RESPONSABILIDADE:
+   - Localizar apenas os botões exibidos nas imagens
+   - Remover do DOM somente essas ocorrências exatas
+   - Remover junto o bloco informativo logo abaixo
+     ("compra segura", "satisfação", "privacidade")
+   - Não afetar os demais botões com o mesmo texto
+========================================================= */
+function initSelectiveHiddenCTAs() {
+  const TARGET_TEXT = "QUERO REALIZAR A MINHA BELEZA!";
+  const TARGET_REMOVE_COUNT = 3;
+
+  /* -------------------------------------------
+     Seletores de elementos clicáveis comuns
+     que podem conter o CTA alvo
+  ------------------------------------------- */
+  const selectors = [
+    "a",
+    "button",
+    '[role="button"]',
+    "input[type='button']",
+    "input[type='submit']"
+  ];
+
+  const candidates = Array.from(document.querySelectorAll(selectors.join(",")));
+
+  if (!candidates.length) return;
+
+  /* -------------------------------------------
+     Filtra exatamente pelo texto do botão
+     exibido nas imagens
+  ------------------------------------------- */
+  const matchingCTAs = candidates.filter((element) => {
+    const text = normalizeText(
+      element.textContent ||
+      element.getAttribute("aria-label") ||
+      element.getAttribute("title") ||
+      element.value ||
+      ""
+    ).toUpperCase();
+
+    return text === TARGET_TEXT;
+  });
+
+  if (!matchingCTAs.length) return;
+
+  /* -------------------------------------------
+     Remove somente os 3 primeiros CTAs dessa
+     sequência, preservando o(s) restante(s)
+  ------------------------------------------- */
+  matchingCTAs.slice(0, TARGET_REMOVE_COUNT).forEach((element) => {
+    removeCTAAndTrustInfo(element);
+  });
+}
+
+
+/* =========================================================
+   34) REMOÇÃO COMPLETA DO CTA E BLOCO INFORMATIVO
+   ---------------------------------------------------------
+   RESPONSABILIDADE:
+   - Remover o botão alvo do DOM
+   - Encontrar o bloco de infos imediatamente
+     relacionado a ele pela proximidade textual
+   - Remover sem tocar em outras áreas
+========================================================= */
+function removeCTAAndTrustInfo(element) {
+  if (!element || element.dataset?.selectiveRemoved === "true") return;
+
+  /* -------------------------------------------
+     Marca o CTA para evitar remoção duplicada
+  ------------------------------------------- */
+  element.dataset.selectiveRemoved = "true";
+
+  /* -------------------------------------------
+     Antes de remover o CTA, tenta localizar
+     o bloco de informações que fica associado
+     visualmente logo abaixo dele
+  ------------------------------------------- */
+  const trustInfoElement = findTrustInfoElementNearCTA(element);
+
+  /* -------------------------------------------
+     Remove o botão/CTA do DOM
+  ------------------------------------------- */
+  safelyRemoveElement(element);
+
+  /* -------------------------------------------
+     Remove também o bloco de "compra segura /
+     satisfação garantida / privacidade protegida"
+     se encontrado na mesma área
+  ------------------------------------------- */
+  if (trustInfoElement) {
+    safelyRemoveElement(trustInfoElement);
+  }
+}
+
+
+/* =========================================================
+   35) LOCALIZA BLOCO DE INFORMAÇÕES PRÓXIMO AO CTA
+   ---------------------------------------------------------
+   RESPONSABILIDADE:
+   - Procurar por um elemento próximo ao CTA
+   - Confirmar por texto se é o bloco correto
+   - Priorizar irmãos e elementos do mesmo
+     container visual antes de buscar acima
+========================================================= */
+function findTrustInfoElementNearCTA(ctaElement) {
+  if (!ctaElement) return null;
+
+  const SEARCH_TEXTS = [
+    "compra segura",
+    "satisfação garantida",
+    "privacidade protegida"
+  ];
+
+  /* -------------------------------------------
+     Função auxiliar para validar se um elemento
+     é o bloco de infos que queremos remover
+  ------------------------------------------- */
+  function isTrustInfoElement(node) {
+    if (!node || node === ctaElement) return false;
+
+    const text = normalizeText(node.textContent || "").toLowerCase();
+
+    if (!text) return false;
+
+    const hasCompraSegura = text.includes(SEARCH_TEXTS[0]);
+    const hasSatisfacao = text.includes(SEARCH_TEXTS[1]);
+    const hasPrivacidade = text.includes(SEARCH_TEXTS[2]);
+
+    return hasCompraSegura || hasSatisfacao || hasPrivacidade;
+  }
+
+  /* -------------------------------------------
+     1) Procura no mesmo parent do CTA:
+     irmãos seguintes costumam ser o bloco exato
+  ------------------------------------------- */
+  const parent = ctaElement.parentElement;
+
+  if (parent) {
+    const siblings = Array.from(parent.children);
+    const ctaIndex = siblings.indexOf(ctaElement);
+
+    if (ctaIndex !== -1) {
+      for (let i = ctaIndex + 1; i < siblings.length; i += 1) {
+        if (isTrustInfoElement(siblings[i])) {
+          return siblings[i];
+        }
+      }
+    }
+  }
+
+  /* -------------------------------------------
+     2) Procura dentro do container visual mais
+     próximo do CTA, sem extrapolar a página toda
+  ------------------------------------------- */
+  const localContainer =
+    ctaElement.closest("section, article, .cta-card, .offer-card, .price-card, .pricing-card, div") ||
+    parent;
+
+  if (localContainer) {
+    const descendants = Array.from(localContainer.querySelectorAll("*"));
+
+    for (let i = 0; i < descendants.length; i += 1) {
+      const node = descendants[i];
+
+      if (isTrustInfoElement(node)) {
+        return node;
+      }
+    }
+  }
+
+  /* -------------------------------------------
+     3) Como fallback, verifica o parent do parent
+     caso o HTML esteja agrupado em wrappers
+  ------------------------------------------- */
+  const higherContainer = parent?.parentElement;
+
+  if (higherContainer) {
+    const descendants = Array.from(higherContainer.querySelectorAll("*"));
+
+    for (let i = 0; i < descendants.length; i += 1) {
+      const node = descendants[i];
+
+      if (isTrustInfoElement(node)) {
+        return node;
+      }
+    }
+  }
+
+  return null;
+}
+
+
+/* =========================================================
+   36) UTILITÁRIO DE REMOÇÃO SEGURA
+   ---------------------------------------------------------
+   RESPONSABILIDADE:
+   - Remover um elemento do DOM com segurança
+   - Evitar erro caso ele já tenha sido removido
+========================================================= */
+function safelyRemoveElement(element) {
+  if (!element) return;
+  if (!element.parentNode) return;
+
+  try {
+    element.remove();
+  } catch (_) {
+    if (element.parentNode) {
+      element.parentNode.removeChild(element);
+    }
+  }
 }
